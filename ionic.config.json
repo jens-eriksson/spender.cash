@@ -1,0 +1,8 @@
+{
+  "name": "mobile-wallet",
+  "app_id": "9925c147",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
+}
