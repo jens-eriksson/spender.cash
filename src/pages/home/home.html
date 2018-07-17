@@ -7,7 +7,7 @@
                         <ion-header>
                             <h2 ion-text color="light">PAY</h2>
                         </ion-header>
-                        <ion-img width="150" height="150" src="../../assets/imgs/pay3.png"></ion-img>
+                        <ion-img width="150" height="150" src="../../assets/imgs/pay3.png" (click)="gotoPay()"></ion-img>
                         <div style="margin-top: 20px;">
                             <h2 ion-text color="light">100 000 cash</h2>
                             <h5 ion-text color="light">$70</h5>
@@ -25,7 +25,7 @@
 
         <ion-row>
             <ion-col>
-                <button ion-button icon-only round>
+                <button ion-button icon-only round (click)="gotoTransactions()">
                     <ion-icon name="menu"></ion-icon>
                 </button>
             </ion-col>
