@@ -13,7 +13,7 @@ import { NavController, NavParams } from 'ionic-angular';
   templateUrl: 'settings.html',
 })
 export class SettingsPage {
-
+  public gender = "m";
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
