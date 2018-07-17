@@ -58,7 +58,7 @@ var HomePage = (function () {
     }
     HomePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-home',template:/*ion-inline-start:"/home/jens/Repos/mobile-wallet/src/pages/home/home.html"*/'<ion-content padding>  \n<ion-slides pager>\n    <ion-slide>\n        <h3>PAY</h3>\n    </ion-slide>\n    <ion-slide>\n        <h3>RECEIVE</h3>\n    </ion-slide>\n</ion-slides>\n</ion-content>\n'/*ion-inline-end:"/home/jens/Repos/mobile-wallet/src/pages/home/home.html"*/
+            selector: 'page-home',template:/*ion-inline-start:"/Users/jens/Repos/spender.cash/src/pages/home/home.html"*/'<ion-content padding>\n    <ion-grid>\n        <ion-row style="height: 100%;">\n            <ion-col>\n                <ion-slides pager>\n                    <ion-slide>\n                        <ion-header>\n                            <h2 ion-text color="light">PAY</h2>\n                        </ion-header>\n                        <ion-img width="150" height="150" src="../../assets/imgs/pay.png"></ion-img>\n                        <div style="margin-top: 20px;">\n                            <h2 ion-text color="light">100 000 cash</h2>\n                            <h5 ion-text color="light">$70</h5>\n                        </div>\n                    </ion-slide>\n                    <ion-slide>\n                        <ion-header>\n                            <h2 ion-text color="light">RECEIVE</h2>\n                        </ion-header>\n                        <ion-img width="200" height="200" src="../../assets/imgs/qr.png"></ion-img>\n                    </ion-slide>\n                </ion-slides>\n            </ion-col>\n        </ion-row>\n\n        <ion-row>\n            <ion-col>\n                <button ion-button icon-only round>\n                    <ion-icon name="menu"></ion-icon>\n                </button>\n            </ion-col>\n            <ion-col col-auto>\n                <button ion-button icon-only round>\n                    <ion-icon name="settings"></ion-icon>\n                </button>\n            </ion-col>\n        </ion-row>\n    </ion-grid>\n</ion-content>'/*ion-inline-end:"/Users/jens/Repos/spender.cash/src/pages/home/home.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* NavController */]])
     ], HomePage);
@@ -177,7 +177,7 @@ var MyApp = (function () {
         });
     }
     MyApp = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"/home/jens/Repos/mobile-wallet/src/app/app.html"*/'<ion-nav [root]="rootPage"></ion-nav>\n'/*ion-inline-end:"/home/jens/Repos/mobile-wallet/src/app/app.html"*/
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"/Users/jens/Repos/spender.cash/src/app/app.html"*/'<ion-nav [root]="rootPage"></ion-nav>\n'/*ion-inline-end:"/Users/jens/Repos/spender.cash/src/app/app.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* Platform */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */]])
     ], MyApp);

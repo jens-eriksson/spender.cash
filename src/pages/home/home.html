@@ -1,10 +1,39 @@
-<ion-content padding>  
-<ion-slides pager>
-    <ion-slide>
-        <h3>PAY</h3>
-    </ion-slide>
-    <ion-slide>
-        <h3>RECEIVE</h3>
-    </ion-slide>
-</ion-slides>
+<ion-content padding>
+    <ion-grid>
+        <ion-row style="height: 100%;">
+            <ion-col>
+                <ion-slides pager>
+                    <ion-slide>
+                        <ion-header>
+                            <h2 ion-text color="light">PAY</h2>
+                        </ion-header>
+                        <ion-img width="150" height="150" src="../../assets/imgs/pay.png"></ion-img>
+                        <div style="margin-top: 20px;">
+                            <h2 ion-text color="light">100 000 cash</h2>
+                            <h5 ion-text color="light">$70</h5>
+                        </div>
+                    </ion-slide>
+                    <ion-slide>
+                        <ion-header>
+                            <h2 ion-text color="light">RECEIVE</h2>
+                        </ion-header>
+                        <ion-img width="200" height="200" src="../../assets/imgs/qr.png"></ion-img>
+                    </ion-slide>
+                </ion-slides>
+            </ion-col>
+        </ion-row>
+
+        <ion-row>
+            <ion-col>
+                <button ion-button icon-only round>
+                    <ion-icon name="menu"></ion-icon>
+                </button>
+            </ion-col>
+            <ion-col col-auto>
+                <button ion-button icon-only round>
+                    <ion-icon name="settings"></ion-icon>
+                </button>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
 </ion-content>
