@@ -1,3 +1,4 @@
+import { ConfigProvider } from './../../providers/config/config';
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { PayPage } from '../pay/pay';
@@ -9,20 +10,21 @@ import { SettingsPage } from './../settings/settings';
   templateUrl: 'home.html'
 })
 export class HomePage {
+  payIcon: string = '../../assets/imgs/pay.png';
 
-  constructor(public navCtrl: NavController) {
+  constructor(public navCtrl: NavController, public configProvider: ConfigProvider) {
 
   }
 
-  public gotoPay() : void {
-    this.navCtrl.push(PayPage, {});
+  public navToPay() : void {
+    this.navCtrl.push(PayPage);
   }
 
-  public gotoTransactions() : void {
-    this.navCtrl.push(TransactionsPage, {});
+  public navToTransactions() : void {
+    this.navCtrl.push(TransactionsPage);
   }
 
-  public gotoSettings() : void {
-    this.navCtrl.push(SettingsPage, {});
+  public navToSettings() : void {
+    this.navCtrl.push(SettingsPage);
   }
 }

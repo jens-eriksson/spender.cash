@@ -1,24 +1,29 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the SettingsPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { ConfigProvider } from './../../providers/config/config';
+import { CurrencySymbolPage } from './currency-symbol/currency-symbol';
 
 @Component({
   selector: 'page-settings',
   templateUrl: 'settings.html',
 })
 export class SettingsPage {
-  public gender = "m";
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+
+  constructor(public navCtrl: NavController, 
+              public navParams: NavParams,
+              public configProvider: ConfigProvider
+              ) {
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad SettingsPage');
+  ionViewDidLeave() {
+    this.configProvider.save();
   }
 
+  navToCurrencySymbol(){
+    this.navCtrl.push(CurrencySymbolPage, {});
+  }
+
+  navToNativeCurrency(){
+    
+  }
 }

@@ -1,0 +1,25 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>CURRENCY SYMBOL</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <ion-list radio-group [(ngModel)]="configProvider.settings.currencySymbol">
+      <ion-item>
+        <ion-label>cash</ion-label>
+        <ion-radio value="cash" checked></ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-label>bits</ion-label>
+        <ion-radio value="bits"></ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-label>BCH</ion-label>
+        <ion-radio value="BCH"></ion-radio>
+      </ion-item>
+    </ion-list>
+</ion-content>

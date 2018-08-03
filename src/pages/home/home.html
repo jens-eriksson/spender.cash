@@ -4,14 +4,16 @@
             <ion-col>
                 <ion-slides pager>
                     <ion-slide>
-                        <ion-img width="150" height="150" src="../../assets/imgs/pay.png" (click)="gotoPay()"></ion-img>
-                        <div style="margin-top: 20px;">
-                            <h2 ion-text color="light">100,000.00 cash</h2>
+                        <ion-img width="150" height="150" src="{{ payIcon }}" (click)="navToPay()"></ion-img>
+                        <div *ngIf="!configProvider.settings.hideBalance" style="margin-top: 20px;">
+                            <h2 ion-text color="light">100,000.00</h2>
+                            <h5 ion-text color="light">{{ configProvider.settings.currencySymbol }}</h5>
+                            <br>
                             <h5 ion-text color="light">$70.34</h5>
                         </div>
                     </ion-slide>
                     <ion-slide>
-                        <ion-img width="230" height="230" src="../../assets/imgs/qr.png"></ion-img>
+                        <ion-img width="230" height="230" src="/../assets/imgs/qr.png"></ion-img>
                     </ion-slide>
                 </ion-slides>
             </ion-col>
@@ -19,12 +21,12 @@
 
         <ion-row>
             <ion-col>
-                <button ion-button icon-only round (click)="gotoTransactions()">
+                <button ion-button icon-only round (click)="navToTransactions()">
                     <ion-icon name="menu"></ion-icon>
                 </button>
             </ion-col>
             <ion-col col-auto>
-                <button ion-button icon-only round (click)="gotoSettings()">
+                <button ion-button icon-only round (click)="navToSettings()">
                     <ion-icon name="settings"></ion-icon>
                 </button>
             </ion-col>
