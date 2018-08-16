@@ -25678,8 +25678,67 @@ ion-navbar.toolbar {
   min-height: calc(46px + env(safe-area-inset-bottom));
 }
 
+page-fingerprint .title {
+  text-align: center;
+}
+
+page-fingerprint .scan-button {
+  margin-top: 20px;
+}
+
 page-home ion-grid {
   height: 100%;
+}
+
+page-pin .messages {
+  text-align: center;
+  padding-bottom: 30px;
+}
+
+page-pin .block-code {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  max-width: 300px;
+  margin: auto;
+}
+
+page-pin .block-buttons .row {
+  font-size: 1.7rem;
+  cursor: pointer;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-justify-content: space-around;
+  -ms-flex-pack: distribute;
+  justify-content: space-around;
+}
+
+page-pin .block-buttons .row div {
+  padding: 40px;
+}
+
+page-pin .circle {
+  border-radius: 50%;
+  -webkit-box-shadow: 0 0 3px 0px #5b5b5b;
+  box-shadow: 0 0 3px 0px #5b5b5b;
+  -webkit-transition: background-color .2s ease-in-out;
+  transition: background-color .2s ease-in-out;
+  width: 4rem;
+  height: 4rem;
+  margin: 10px;
+  border: 1px solid;
+  max-height: 100px;
+}
+
+page-pin .filled {
+  background-color: #222;
 }
 
 ion-list-header {

@@ -1,0 +1,18 @@
+page-disclaimer {
+
+    .disclaimer{
+/*         background-color: #192c3a;
+        color: rgba(255, 255, 255, 0.5); */
+    }
+
+    .disclaimer-content{
+        margin-top: calc(5vh + 5vw);
+        text-align: center;
+    }
+
+    .checkbox-list {
+        ion-item {
+            background: none;
+        }
+    }
+}

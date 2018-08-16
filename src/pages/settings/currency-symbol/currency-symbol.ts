@@ -19,7 +19,6 @@ export class CurrencySymbolPage {
   }
 
   ionViewDidLeave() {
-    this.configProvider.save();
   }
 
 }

@@ -1,5 +1,10 @@
 {
-    "Security.framework": 1,
+    "Security.framework": 3,
     "WebKit.framework": 1,
-    "libz.tbd": 1
+    "libz.tbd": 3,
+    "LocalAuthentication.framework": 1,
+    "libc++.tbd": 1,
+    "AddressBook.framework": 1,
+    "libsqlite3.0.tbd": 1,
+    "QuartzCore.framework": 1
 }

@@ -14,21 +14,21 @@
     </ion-list-header>
     <button ion-item (click)="navToCurrencySymbol()">
       <ion-label>Currency Symbol</ion-label>
-      <ion-note item-end>{{ configProvider.settings.currencySymbol }}</ion-note>
+      <ion-note item-end>cash</ion-note>
     </button>
     <button ion-item (click)="navToNativeCurrency()">
         <ion-label>Native Currency</ion-label>
-        <ion-note item-end>{{ configProvider.settings.nativeCurrency }}</ion-note>
+        <ion-note item-end>USD</ion-note>
       </button>
     <ion-item>
         <ion-label>Hide Balance</ion-label>
-        <ion-toggle [(ngModel)]="configProvider.settings.hideBalance"></ion-toggle>
+        <ion-toggle></ion-toggle>
       </ion-item>
     <ion-list-header>
       Backup
     </ion-list-header>
     <button ion-item (click)="navToCurrencySymbol()">
-        <ion-label>Backuup Phrase</ion-label>
+        <ion-label>Recovery Phrase</ion-label>
       </button>
       <button ion-item (click)="navToCurrencySymbol()">
           <ion-label>Restore </ion-label>

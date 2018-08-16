@@ -1,0 +1,40 @@
+{
+    "version": "1.0.0",
+    "createdOn": 1533800275348,
+    "credentials": [
+        {
+            "coin": "bch",
+            "network": "livenet",
+            "xPrivKey": "xprv9s21ZrQH143K3wbGP5HXidRWTcttg8K9EBTNNsKsguuemva6JeyiLsy7kfHioQ4cyxKC756S7gh36q3FkTKZ6js4n652uQFocUqe27H48nj",
+            "xPubKey": "xpub6CmE3Umh77CAGQwMMNjoJBmWf66ot4jjHXmZDrSZc98pB9RDZcKCoFCU5SxY3Z8M5K2FneWB26T2ysUPDVByJ5jBCZxw8TCppQZfD1oBwMV",
+            "requestPrivKey": "4404d74f1991d8e4830728ea5c3f823afb005f35c00ab4c49358f422f90052ca",
+            "requestPubKey": "0296c4e35bcee6583c2b4c03a9624e9b09b30a92a18edf44ea60b149295171541b",
+            "copayerId": "19d87715ee3905f4efefbe71a12bc2d17d229876b9954e00c86abed38b039082",
+            "publicKeyRing": [
+                {
+                    "xPubKey": "xpub6CmE3Umh77CAGQwMMNjoJBmWf66ot4jjHXmZDrSZc98pB9RDZcKCoFCU5SxY3Z8M5K2FneWB26T2ysUPDVByJ5jBCZxw8TCppQZfD1oBwMV",
+                    "requestPubKey": "0296c4e35bcee6583c2b4c03a9624e9b09b30a92a18edf44ea60b149295171541b"
+                }
+            ],
+            "walletId": "fa8bd198-8914-4cf9-abd5-4a9204d4e004",
+            "walletName": "Jens",
+            "m": 1,
+            "n": 1,
+            "walletPrivKey": "37dc7ca89cdd637903efd6cb2cc9fd12d0aa20ac152a8cb735ec464795d207ca",
+            "personalEncryptingKey": "cugkFJXRZo1+tHhh5Cio3g==",
+            "sharedEncryptingKey": "cKs9rWzVXHTyUAVh+21lFA==",
+            "copayerName": "me",
+            "mnemonic": "warrior curtain festival famous silk soap rapid embody town exile polar warrior",
+            "entropySource": "6b8306fdf2385c5b9e724c331e838aa9f77b61129a839293d3d567419050a829",
+            "mnemonicHasPassphrase": false,
+            "derivationStrategy": "BIP44",
+            "account": 0,
+            "compliantDerivation": true,
+            "addressType": "P2PKH"
+        }
+    ],
+    "disclaimerAccepted": false,
+    "checked": {},
+    "checkedUA": {},
+    "dirty": true
+}

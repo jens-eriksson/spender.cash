@@ -1,15 +1,19 @@
 <ion-content padding>
+        <ion-refresher (ionRefresh)="doRefresh($event)">
+                <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="" refreshingSpinner="circles" refreshingText="">
+                </ion-refresher-content>
+            </ion-refresher>
     <ion-grid>
         <ion-row style="height: 100%;">
             <ion-col>
                 <ion-slides pager>
                     <ion-slide>
+                        
                         <ion-img width="150" height="150" src="{{ payIcon }}" (click)="navToPay()"></ion-img>
-                        <div *ngIf="!configProvider.settings.hideBalance" style="margin-top: 20px;">
-                            <h2 ion-text color="light">100,000.00</h2>
-                            <h5 ion-text color="light">{{ configProvider.settings.currencySymbol }}</h5>
-                            <br>
-                            <h5 ion-text color="light">$70.34</h5>
+                        <div class="balance">
+                            <h2 ion-text color="balance">{{ this.wallet.status.availableBalanceSat }}</h2>
+                            <h5 ion-text color="balance">cash</h5>
+                            <h5 ion-text color="native-balance">$70.34</h5>
                         </div>
                     </ion-slide>
                     <ion-slide>

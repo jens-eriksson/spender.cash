@@ -16,7 +16,7 @@ export class SettingsPage {
   }
 
   ionViewDidLeave() {
-    this.configProvider.save();
+
   }
 
   navToCurrencySymbol(){
