@@ -1,22 +1,22 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import { ConfigProvider } from './../../providers/config/config';
 import { CurrencySymbolPage } from './currency-symbol/currency-symbol';
+import { SettingsProvider } from '../../providers/settings/settings';
 
 @Component({
   selector: 'page-settings',
   templateUrl: 'settings.html',
 })
 export class SettingsPage {
-
+  
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
-              public configProvider: ConfigProvider
+              public settingsProvider: SettingsProvider
               ) {
   }
 
   ionViewDidLeave() {
-    this.configProvider.save();
+    this.settingsProvider.save();
   }
 
   navToCurrencySymbol(){

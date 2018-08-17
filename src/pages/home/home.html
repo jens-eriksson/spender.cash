@@ -4,10 +4,10 @@
             <ion-col>
                 <ion-slides pager>
                     <ion-slide>
-                        <ion-img width="150" height="150" src="{{ payIcon }}" (click)="navToPay()"></ion-img>
-                        <div *ngIf="!configProvider.settings.hideBalance" style="margin-top: 20px;">
+                        <ion-img width="150" height="150" src="../../assets/imgs/pay.png" (click)="navToPay()"></ion-img>
+                        <div *ngIf="!settingsProvider.settings.hideBalance" style="margin-top: 20px;">
                             <h2 ion-text color="light">100,000.00</h2>
-                            <h5 ion-text color="light">{{ configProvider.settings.currencySymbol }}</h5>
+                            <h5 ion-text color="light">{{ settingsProvider.settings.currencySymbol }}</h5>
                             <br>
                             <h5 ion-text color="light">$70.34</h5>
                         </div>

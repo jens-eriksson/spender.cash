@@ -8,15 +8,25 @@ import { Platform } from 'ionic-angular';
     public storage: IStorage;
     
     constructor(
-      private platform: Platform,
-      private cordovaStorage: CordovaStorage,
-      private localStorage: LocalStorage
+      private platform: Platform
     ) { 
         if(this.platform.is('cordova')){
-            this.storage = this.cordovaStorage;
+            this.storage = new CordovaStorage()
         }
         else{
-            this.storage = this.localStorage;
+            this.storage = new LocalStorage();
         }
+    }
+
+    public get(key: string): Promise<any> {
+        return this.storage.get(key);
+    }
+
+    public set(key: string, value: any): Promise<void> {
+        return this.storage.set(key, JSON.stringify(value));
+    }
+
+    public remove(key: string): Promise<string> {
+        return this.storage.remove(key);
     }
   }

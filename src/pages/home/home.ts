@@ -1,4 +1,4 @@
-import { ConfigProvider } from './../../providers/config/config';
+import { SettingsProvider } from './../../providers/settings/settings';
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { PayPage } from '../pay/pay';
@@ -10,10 +10,8 @@ import { SettingsPage } from './../settings/settings';
   templateUrl: 'home.html'
 })
 export class HomePage {
-  payIcon: string = '../../assets/imgs/pay.png';
-
-  constructor(public navCtrl: NavController, public configProvider: ConfigProvider) {
-
+  
+  constructor(public navCtrl: NavController, public settingsProvider: SettingsProvider) {
   }
 
   public navToPay() : void {
