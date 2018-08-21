@@ -1,6 +1,6 @@
 import { IStorage, CordovaStorage, LocalStorage } from './storage';
 import { Injectable } from '@angular/core';
-import { Platform } from 'ionic-angular';
+import { Platform } from 'ionic-angular/umd';
 
 @Injectable()
   export class PersistenceProvider {

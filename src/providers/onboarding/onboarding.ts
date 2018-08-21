@@ -1,7 +1,7 @@
-import { WalletProvider } from './../wallet/wallet';
+import { WalletProvider } from '../wallet/wallet';
 // agreeDisclaimer
 
-import { PersistenceProvider } from './../persistence/persistence';
+import { PersistenceProvider } from '../persistence/persistence';
 import { Injectable } from '@angular/core';
 
 @Injectable()

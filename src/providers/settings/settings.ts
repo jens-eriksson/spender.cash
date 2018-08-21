@@ -1,5 +1,5 @@
-import { Settings, DefaultSettings } from './../../model/settings';
-import { PersistenceProvider } from './../persistence/persistence';
+import { Settings, DefaultSettings } from '../../model/settings';
+import { PersistenceProvider } from '../persistence/persistence';
 import { Injectable } from '@angular/core';
 
 @Injectable()

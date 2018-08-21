@@ -1,24 +1,31 @@
-<ion-content padding>
+<ion-content *ngIf="walletProvider.wallet" padding>
     <ion-grid>
-        <ion-row style="height: 100%;">
+        <ion-row >
             <ion-col>
-                <ion-slides pager>
-                    <ion-slide>
-                        <ion-img width="150" height="150" src="../../assets/imgs/pay.png" (click)="navToPay()"></ion-img>
-                        <div *ngIf="!settingsProvider.settings.hideBalance" style="margin-top: 20px;">
-                            <h2 ion-text color="light">100,000.00</h2>
-                            <h5 ion-text color="light">{{ settingsProvider.settings.currencySymbol }}</h5>
-                            <br>
-                            <h5 ion-text color="light">$70.34</h5>
+                    <div class="balance" *ngIf="!settingsProvider.settings.hideBalance">
+                            <h5>{{ walletProvider.wallet.balance | currency: settingsProvider.settings.currencySymbol }}</h5>
+                            <hr>
+                            <h6 ion-text color="light">{{ nativeBalance | currency: settingsProvider.settings.nativeCurrency }}</h6>
                         </div>
-                    </ion-slide>
-                    <ion-slide>
-                        <ion-img width="230" height="230" src="/../assets/imgs/qr.png"></ion-img>
-                    </ion-slide>
-                </ion-slides>
+                
             </ion-col>
         </ion-row>
-
+        <ion-row class="slides">
+            <ion-col>
+                    <ion-slides pager>
+                            <ion-slide>
+                                <div class="pay-button" (click)="navToPay()">
+                                    <ion-icon name="share-alt"></ion-icon>
+                                </div>
+        
+                            </ion-slide>
+                            <ion-slide>
+                                <ngx-qrcode qrc-element-type="url" [qrc-value]="qrCode" qrc-errorCorrectionLevel="L">
+                                </ngx-qrcode>
+                            </ion-slide>
+                        </ion-slides>
+            </ion-col>
+        </ion-row>
         <ion-row>
             <ion-col>
                 <button ion-button icon-only round (click)="navToTransactions()">
@@ -32,4 +39,10 @@
             </ion-col>
         </ion-row>
     </ion-grid>
+</ion-content>
+
+<ion-content *ngIf="!walletProvider.wallet" padding text-center>
+    <button ion-button round (click)="walletProvider.create()">
+        Create Wallet...
+    </button>
 </ion-content>

@@ -2,4 +2,39 @@ page-home {
     ion-grid {
         height: 100%;
       }
+    ion-slide {
+        margin-top: -30px;
+    }
+    
+    .slides {
+        height: 100%;
+    }
+
+    .pay-button{
+        background-color: #3e74d1;
+        width: 130px;
+        height: 130px;
+        margin: auto;
+        border-radius: 40px;
+    }
+
+    .pay-button ion-icon {
+        margin-left: auto;
+        margin-top: 25px;
+        color: white;
+        font-size: 72px;
+    }
+
+    .balance {
+        margin-top: 20px;
+        text-align: center;
+    }
+
+    .balance hr {
+        width: 130px;
+    }
+
+    .qr-code {
+        width: 100%;
+    }
 }
