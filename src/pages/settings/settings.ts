@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular/umd';
+import { NavController, NavParams } from 'ionic-angular';
 import { CurrencySymbolPage } from './currency-symbol/currency-symbol';
 import { SettingsProvider } from '../../providers/settings/settings';
 

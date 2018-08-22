@@ -2,7 +2,7 @@ import { HomePage } from '../pages/home/home';
 import { DisclaimerPage } from '../pages/disclaimer/disclaimer';
 import { PersistenceProvider } from '../providers/persistence/persistence';
 import { Component } from '@angular/core';
-import { Platform } from 'ionic-angular/umd';
+import { Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 

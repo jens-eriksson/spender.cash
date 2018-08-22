@@ -1,12 +1,10 @@
-import { WalletProvider } from '../../providers/wallet/wallet';
+import { BitcoinCashProvider } from './../../providers/bitcoin-cash/bitcoin-cash';
 import { SettingsProvider } from '../../providers/settings/settings';
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular/umd';
+import { NavController } from 'ionic-angular';
 import { PayPage } from '../pay/pay';
 import { TransactionsPage } from '../transactions/transactions';
 import { SettingsPage } from '../settings/settings';
-import * as BITBOXCli from 'bitbox-cli/lib/bitbox-cli';
-import { TransactionProvider } from '../../providers/transactions/transactions';
 
 @Component({
   selector: 'page-home',
@@ -19,30 +17,32 @@ export class HomePage {
 
   constructor(public navCtrl: NavController, 
               public settingsProvider: SettingsProvider, 
-              public walletProvider: WalletProvider,
-              public transactionProvider: TransactionProvider) {
+              public bitcoinCashProvider: BitcoinCashProvider
+            ) {
 
   }
   ionViewDidLoad() {
-    this.walletProvider.load().then(wallet => {
-      this.calculateNativeBalance();
-      this.setQrCode(wallet.getPublicAddress());
-    });    
+    this.bitcoinCashProvider.initilizeWallet()
+      .then(() => {
+        this.setQrCode(this.bitcoinCashProvider.getPublicAddress());
+      })
+      .catch(error => { 
+        console.log(error);
+      }); 
+  }
+
+  public refresh(refresher) {
+    try {
+      this.bitcoinCashProvider.updateBalance()
+        .then(() => refresher.complete());
+    }
+    catch(error) {
+      console.log(error);
+    }
   }
 
   public calculateNativeBalance() {
-/*     let BITBOX =  new BITBOXCli.default();
-    BITBOX.Price.current(this.settingsProvider.settings.nativeCurrency).then(
-      result => {
-        this.nativeBalance = result * this.walletProvider.wallet.balance / 100000000;
-      },
-      error => {
-        this.nativeBalance = 0;
-        console.log(error)
-      }); */
-
       this.nativeBalance = 0;
-
   }
 
   public navToPay() : void {
@@ -58,7 +58,6 @@ export class HomePage {
   }
 
   private setQrCode(address: string, options?: any) {
-    let BITBOX = new BITBOXCli.default();
-    this.qrCode = BITBOX.BitcoinCash.encodeBIP21(address, options);
+    this.qrCode = this.bitcoinCashProvider.encodeBIP21(address, options);
   }
 }

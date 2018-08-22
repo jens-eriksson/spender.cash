@@ -1,12 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular/umd';
-
-/**
- * Generated class for the TransactionsPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { NavController, NavParams } from 'ionic-angular';
 
 @Component({
   selector: 'page-transactions',

@@ -1,7 +1,6 @@
-import { ExtendedCurrencyPipe } from '../pipes/currency';
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
-import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular/umd';
+import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { NgxQRCodeModule } from 'ngx-qrcode2';
@@ -21,8 +20,11 @@ import { CurrencySymbolPage } from '../pages/settings/currency-symbol/currency-s
 import { PersistenceProvider } from '../providers/persistence/persistence';
 import { SettingsProvider } from '../providers/settings/settings';
 import { OnBoardingProvider } from '../providers/onboarding/onboarding';
-import { WalletProvider } from '../providers/wallet/wallet';
-import { TransactionProvider } from '../providers/transactions/transactions';
+import { BitcoinCashProvider } from './../providers/bitcoin-cash/bitcoin-cash';
+
+/* Pipes */
+import { ExtendedCurrencyPipe } from '../pipes/currency';
+import { TruncatePipe } from '../pipes/truncate';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,8 @@ import { TransactionProvider } from '../providers/transactions/transactions';
     SettingsPage,
     CurrencySymbolPage,
     DisclaimerPage,
-    ExtendedCurrencyPipe
+    ExtendedCurrencyPipe,
+    TruncatePipe
   ],
   imports: [
     BrowserModule,
@@ -56,8 +59,7 @@ import { TransactionProvider } from '../providers/transactions/transactions';
     PersistenceProvider,
     SettingsProvider,
     OnBoardingProvider,
-    WalletProvider,
-    TransactionProvider,
+    BitcoinCashProvider,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

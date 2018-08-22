@@ -1,6 +1,6 @@
 import { SettingsProvider } from '../../../providers/settings/settings';
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular/umd';
+import { NavController, NavParams } from 'ionic-angular';
 
 @Component({
   selector: 'page-currency-symbol',

@@ -1,13 +1,11 @@
-import { WalletProvider } from '../wallet/wallet';
-// agreeDisclaimer
-
+import { BitcoinCashProvider } from './../bitcoin-cash/bitcoin-cash';
 import { PersistenceProvider } from '../persistence/persistence';
 import { Injectable } from '@angular/core';
 
 @Injectable()
 export class OnBoardingProvider {
 
-    constructor(private walletProdiver: WalletProvider, private persistenceProvider: PersistenceProvider) {
+    constructor(private bitcoinCashProvider: BitcoinCashProvider, private persistenceProvider: PersistenceProvider) {
     }
 
     public setDisclaimer(value: boolean) {
@@ -15,6 +13,6 @@ export class OnBoardingProvider {
     }
 
     public createWallet() {
-        this.walletProdiver.create();
+        this.bitcoinCashProvider.createWallet();
     }
 }

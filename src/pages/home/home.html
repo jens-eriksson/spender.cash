@@ -1,9 +1,15 @@
-<ion-content *ngIf="walletProvider.wallet" padding>
+<ion-content *ngIf="bitcoinCashProvider.wallet" padding>
+    <ion-refresher (ionRefresh)="refresh($event)">
+            <ion-refresher-content
+                pullingIcon="arrow-dropdown"
+                refreshingSpinner="circles">
+            </ion-refresher-content>
+            </ion-refresher>
     <ion-grid>
         <ion-row >
             <ion-col>
                     <div class="balance" *ngIf="!settingsProvider.settings.hideBalance">
-                            <h5>{{ walletProvider.wallet.balance | currency: settingsProvider.settings.currencySymbol }}</h5>
+                            <h5>{{ bitcoinCashProvider.wallet.balance | currency: settingsProvider.settings.currencySymbol }}</h5>
                             <hr>
                             <h6 ion-text color="light">{{ nativeBalance | currency: settingsProvider.settings.nativeCurrency }}</h6>
                         </div>
@@ -41,8 +47,8 @@
     </ion-grid>
 </ion-content>
 
-<ion-content *ngIf="!walletProvider.wallet" padding text-center>
-    <button ion-button round (click)="walletProvider.create()">
+<ion-content *ngIf="!bitcoinCashProvider.wallet" padding text-center>
+    <button ion-button round (click)="bitcoinCashProvider.createWallet()">
         Create Wallet...
     </button>
 </ion-content>

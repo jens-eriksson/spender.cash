@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular/umd';
+import { NavController, NavParams } from 'ionic-angular';
 
 /**
  * Generated class for the PayPage page.
