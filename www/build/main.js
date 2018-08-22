@@ -131,10 +131,11 @@ var HomePage = (function () {
         Object(__WEBPACK_IMPORTED_MODULE_2__angular_core__["m" /* Component */])({
             selector: 'page-home',template:/*ion-inline-start:"/Users/jens/Repos/spender.cash/src/pages/home/home.html"*/'<ion-content *ngIf="bitcoinCashProvider.wallet" padding>\n    <ion-refresher (ionRefresh)="refresh($event)">\n            <ion-refresher-content\n                pullingIcon="arrow-dropdown"\n                refreshingSpinner="circles">\n            </ion-refresher-content>\n            </ion-refresher>\n    <ion-grid>\n        <ion-row >\n            <ion-col>\n                    <div class="balance" *ngIf="!settingsProvider.settings.hideBalance">\n                            <h5>{{ bitcoinCashProvider.wallet.balance | currency: settingsProvider.settings.currencySymbol }}</h5>\n                            <hr>\n                            <h6 ion-text color="light">{{ nativeBalance | currency: settingsProvider.settings.nativeCurrency }}</h6>\n                        </div>\n                \n            </ion-col>\n        </ion-row>\n        <ion-row class="slides">\n            <ion-col>\n                    <ion-slides pager>\n                            <ion-slide>\n                                <div class="pay-button" (click)="navToPay()">\n                                    <ion-icon name="share-alt"></ion-icon>\n                                </div>\n        \n                            </ion-slide>\n                            <ion-slide>\n                                <ngx-qrcode qrc-element-type="url" [qrc-value]="qrCode" qrc-errorCorrectionLevel="L">\n                                </ngx-qrcode>\n                            </ion-slide>\n                        </ion-slides>\n            </ion-col>\n        </ion-row>\n        <ion-row>\n            <ion-col>\n                <button ion-button icon-only round (click)="navToTransactions()">\n                    <ion-icon name="menu"></ion-icon>\n                </button>\n            </ion-col>\n            <ion-col col-auto>\n                <button ion-button icon-only round (click)="navToSettings()">\n                    <ion-icon name="settings"></ion-icon>\n                </button>\n            </ion-col>\n        </ion-row>\n    </ion-grid>\n</ion-content>\n\n<ion-content *ngIf="!bitcoinCashProvider.wallet" padding text-center>\n    <button ion-button round (click)="bitcoinCashProvider.createWallet()">\n        Create Wallet...\n    </button>\n</ion-content>'/*ion-inline-end:"/Users/jens/Repos/spender.cash/src/pages/home/home.html"*/
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["d" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["d" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__providers_settings_settings__["a" /* SettingsProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__providers_settings_settings__["a" /* SettingsProvider */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_0__providers_bitcoin_cash_bitcoin_cash__["a" /* BitcoinCashProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__providers_bitcoin_cash_bitcoin_cash__["a" /* BitcoinCashProvider */]) === "function" && _c || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3_ionic_angular__["d" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_1__providers_settings_settings__["a" /* SettingsProvider */],
+            __WEBPACK_IMPORTED_MODULE_0__providers_bitcoin_cash_bitcoin_cash__["a" /* BitcoinCashProvider */]])
     ], HomePage);
     return HomePage;
-    var _a, _b, _c;
 }());
 
 //# sourceMappingURL=home.js.map
@@ -203,6 +204,7 @@ var BitcoinCashProvider = (function () {
         this.STORAGEKEY = 'mnemonic';
         this.BITBOX = new __WEBPACK_IMPORTED_MODULE_2_bitbox_cli_lib_bitbox_cli__["default"]();
         //this.listen();
+        this.BITBOX.restURL = "http://localhost:8100/bitbox";
     }
     BitcoinCashProvider.prototype.initilizeWallet = function () {
         return __awaiter(this, void 0, void 0, function () {
@@ -261,7 +263,13 @@ var BitcoinCashProvider = (function () {
     };
     BitcoinCashProvider.prototype.createWallet = function () {
         if (!this.wallet) {
-            this.wallet.mnemonic = "range profit front athlete demise inject armed become kick okay love diet";
+            this.wallet = {
+                mnemonic: "range profit front athlete demise inject armed become kick okay love diet",
+                publicAddresses: [],
+                changeAddresses: [],
+                uxtos: [],
+                balance: 0
+            };
             this.saveWallet();
         }
     };

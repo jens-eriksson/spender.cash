@@ -12,6 +12,7 @@ export class BitcoinCashProvider {
 
     constructor(private persistenceProvider: PersistenceProvider) {
         //this.listen();
+        this.BITBOX.restURL = "http://localhost:8100/bitbox"
     }
 
     public async initilizeWallet(): Promise<Wallet> {
@@ -67,7 +68,13 @@ export class BitcoinCashProvider {
 
     public createWallet() {
         if (!this.wallet) {
-            this.wallet.mnemonic = "range profit front athlete demise inject armed become kick okay love diet";
+            this.wallet = {
+                mnemonic: "range profit front athlete demise inject armed become kick okay love diet",
+                publicAddresses: [],
+                changeAddresses: [],
+                uxtos: [],
+                balance: 0
+            };
             this.saveWallet();
         }
     }
