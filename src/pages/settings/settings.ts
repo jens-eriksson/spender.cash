@@ -1,3 +1,4 @@
+import { FiatCurrenyPage } from './fiat-curreny/fiat-curreny';
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { CurrencySymbolPage } from './currency-symbol/currency-symbol';
@@ -8,7 +9,7 @@ import { SettingsProvider } from '../../providers/settings/settings';
   templateUrl: 'settings.html',
 })
 export class SettingsPage {
-  
+
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
               public settingsProvider: SettingsProvider
@@ -20,10 +21,10 @@ export class SettingsPage {
   }
 
   navToCurrencySymbol(){
-    this.navCtrl.push(CurrencySymbolPage, {});
+    this.navCtrl.push(CurrencySymbolPage);
   }
 
-  navToNativeCurrency(){
-    
+  navToFiatCurrency(){
+    this.navCtrl.push(FiatCurrenyPage);
   }
 }

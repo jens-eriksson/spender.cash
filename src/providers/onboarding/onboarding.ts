@@ -1,4 +1,4 @@
-import { BitcoinCashProvider } from './../bitcoin-cash/bitcoin-cash';
+import { BitcoinCashProvider } from '../bitcoin-cash/bitcoin-cash';
 import { PersistenceProvider } from '../persistence/persistence';
 import { Injectable } from '@angular/core';
 

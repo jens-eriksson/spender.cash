@@ -14,15 +14,21 @@ export class ExtendedCurrencyPipe extends CurrencyPipe implements PipeTransform 
         break;
 
         case "bits":
-        result = value / 100 + " bits";
+        result =  parseFloat(value).toFixed(2)  + " bits";
         break;
 
         case "cash":
-        result = value / 100 + " cash";
+        result = parseFloat(value).toFixed(2) + " cash";
         break;
 
         case "BCH":
-        result = value / 100000000 + " BCH";
+        result = parseFloat(value).toFixed(8) + " BCH";
+        break;
+
+        case "SEK":
+        if(value) {
+          result = parseFloat(value).toFixed(2) + " kr";
+        }
         break;
 
         default:

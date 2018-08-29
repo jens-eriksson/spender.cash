@@ -1,0 +1,32 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>CURRENCY SYMBOL</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content>
+  <ion-list radio-group [(ngModel)]="settingsProvider.settings.fiatCurrency">
+    <ion-item>
+      <ion-label>USD - US Dollar</ion-label>
+      <ion-radio value="USD" checked></ion-radio>
+    </ion-item>
+    <ion-item>
+      <ion-label>SEK - Swedish krona</ion-label>
+      <ion-radio value="SEK"></ion-radio>
+    </ion-item>
+    <ion-item>
+      <ion-label>JPY - Japanese Yen</ion-label>
+      <ion-radio value="JPY"></ion-radio>
+    </ion-item>
+    <ion-item>
+      <ion-label>EUR - Euro</ion-label>
+      <ion-radio value="EUR"></ion-radio>
+    </ion-item>
+    <ion-item>
+      <ion-label>GBP - Pound Sterling</ion-label>
+      <ion-radio value="GBP"></ion-radio>
+    </ion-item>
+  </ion-list>
+</ion-content>

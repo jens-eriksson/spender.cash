@@ -1,51 +1,58 @@
+<ion-header *ngIf="bitcoinCashProvider.wallet" class="balance">
+    <ion-slides (ionSlideDidChange)="ionSlideDidChange()">
+        <ion-slide>   
+            <h1>
+                <b>{{ bitcoinCashProvider.getBalance() | currency: settingsProvider.settings.currencySymbol }}</b>
+            </h1>
+            <h6 *ngIf="!settingsProvider.settings.hideFiatAmounts">{{ fiatBalance | currency: settingsProvider.settings.fiatCurrency }}</h6>
+        </ion-slide>
+        <ion-slide>
+            <button ion-button large icon-only round color="white" outline>
+                <ion-icon name="camera"></ion-icon>
+            </button>
+        </ion-slide>
+    </ion-slides>
+</ion-header>
+
 <ion-content *ngIf="bitcoinCashProvider.wallet" padding>
     <ion-refresher (ionRefresh)="refresh($event)">
-            <ion-refresher-content
-                pullingIcon="arrow-dropdown"
-                refreshingSpinner="circles">
-            </ion-refresher-content>
-            </ion-refresher>
-    <ion-grid>
-        <ion-row >
-            <ion-col>
-                    <div class="balance" *ngIf="!settingsProvider.settings.hideBalance">
-                            <h5>{{ bitcoinCashProvider.wallet.balance | currency: settingsProvider.settings.currencySymbol }}</h5>
-                            <hr>
-                            <h6 ion-text color="light">{{ nativeBalance | currency: settingsProvider.settings.nativeCurrency }}</h6>
-                        </div>
-                
-            </ion-col>
-        </ion-row>
-        <ion-row class="slides">
-            <ion-col>
-                    <ion-slides pager>
-                            <ion-slide>
-                                <div class="pay-button" (click)="navToPay()">
-                                    <ion-icon name="share-alt"></ion-icon>
-                                </div>
-        
-                            </ion-slide>
-                            <ion-slide>
-                                <ngx-qrcode qrc-element-type="url" [qrc-value]="qrCode" qrc-errorCorrectionLevel="L">
-                                </ngx-qrcode>
-                            </ion-slide>
-                        </ion-slides>
-            </ion-col>
-        </ion-row>
-        <ion-row>
-            <ion-col>
-                <button ion-button icon-only round (click)="navToTransactions()">
-                    <ion-icon name="menu"></ion-icon>
-                </button>
-            </ion-col>
-            <ion-col col-auto>
-                <button ion-button icon-only round (click)="navToSettings()">
-                    <ion-icon name="settings"></ion-icon>
-                </button>
-            </ion-col>
-        </ion-row>
-    </ion-grid>
+        <ion-refresher-content pullingIcon="arrow-dropdown" refreshingSpinner="circles">
+        </ion-refresher-content>
+    </ion-refresher>
+    <ion-slides pager>
+        <ion-slide>
+            <div class="pay-button" (click)="navToPay()">
+                <ion-icon name="share-alt"></ion-icon>
+            </div>
+        </ion-slide>
+        <ion-slide>
+            <ion-card class="receive-card">
+                <ion-card-content>
+                    <ngx-qrcode qrc-element-type="url" [qrc-value]="qrCode" qrc-errorCorrectionLevel="L" (click)="navToReceive()">
+                    </ngx-qrcode>
+                    <div *ngIf="this.receiveAmount">
+                        <ion-item text-center>
+                            <p ion-text color="primary">{{ this.receiveAmount | currency: settingsProvider.settings.currencySymbol }}</p>
+                        </ion-item>
+                        <ion-item text-center>
+                            <p ion-text>{{ this.receiveFiatAmount | currency: settingsProvider.settings.fiatCurrency }}
+                            </p>
+                        </ion-item>
+                    </div>
+                </ion-card-content>
+            </ion-card>
+        </ion-slide>
+    </ion-slides>˛
 </ion-content>
+
+<ion-footer padding *ngIf="bitcoinCashProvider.wallet">
+    <button ion-button icon-only round float-start (click)="navToTransactions()">
+        <ion-icon name="menu"></ion-icon>
+    </button>
+    <button ion-button icon-only round float-end (click)="navToSettings()">
+        <ion-icon name="settings"></ion-icon>
+    </button>
+</ion-footer>
 
 <ion-content *ngIf="!bitcoinCashProvider.wallet" padding text-center>
     <button ion-button round (click)="bitcoinCashProvider.createWallet()">

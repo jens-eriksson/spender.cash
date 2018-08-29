@@ -1,3 +1,4 @@
+import { SettingsProvider } from './../settings/settings';
 import { Wallet } from '../../model/wallet';
 import { PersistenceProvider } from '../persistence/persistence';
 import { Injectable } from '@angular/core';
@@ -10,9 +11,13 @@ export class BitcoinCashProvider {
     private BITBOX = new BITBOXCli.default();
     public wallet: Wallet;
 
-    constructor(private persistenceProvider: PersistenceProvider) {
+    constructor(
+        private persistenceProvider: PersistenceProvider,
+        private settingsProvider: SettingsProvider
+    ) {
+        this.BITBOX.restURL = "http://localhost:8100/bitbox/v1/";
+        this.BITBOX.Address.restURL = "http://localhost:8100/bitbox/v1/";
         //this.listen();
-        this.BITBOX.restURL = "http://localhost:8100/bitbox"
     }
 
     public async initilizeWallet(): Promise<Wallet> {
@@ -31,7 +36,7 @@ export class BitcoinCashProvider {
 
             // public addresses
             this.wallet.publicAddresses = [];
-            for (let i = 0; i < 20; i++) {
+            for (let i = 19; i < 20; i++) {
                 let derivationPath = "m/44'/145'/0'/0/" + i;
                 let account = masterNode.derivePath(derivationPath);
                 let address: Address = {
@@ -52,8 +57,6 @@ export class BitcoinCashProvider {
                 };
                 this.wallet.changeAddresses.push(address);
             }
-            
-            await this.updateBalance();
         }
         else {
             this.wallet = null;
@@ -79,20 +82,20 @@ export class BitcoinCashProvider {
         }
     }
 
-    public encodeBIP21(address, options): string {
+    public encodeQrCode(address, options): string {
         return this.BITBOX.BitcoinCash.encodeBIP21(address, options);
     }
 
-    public decodeBIP21(url: string): any {
+    public decodeQrCode(url: string): any {
         return this.BITBOX.BitcoinCash.decodeBIP21(url);
     }
 
     public async updateBalance(): Promise<Wallet> {
-        let balance = 0;
+        let balance: number = 0;
         let uxtos = [];
-        
-        this.wallet.publicAddresses.forEach(async address => {
-            let result = await this.BITBOX.Address.utxo(address.address);
+
+        for (let i = 0; i < this.wallet.publicAddresses.length; i++) {
+            let result = await this.BITBOX.Address.utxo(this.wallet.publicAddresses[i].address);
             if(!result) {
                 return this.wallet;
             }
@@ -107,13 +110,13 @@ export class BitcoinCashProvider {
                 });
                 balance += u.satoshis;
             });
-        });
-
-        this.wallet.publicAddresses.forEach(async address => {
-            let result = await this.BITBOX.Address.unconfirmed(address.address);
+        }
+     
+        for (let i = 0; i < this.wallet.publicAddresses.length; i++) {
+            let result = await this.BITBOX.Address.unconfirmed(this.wallet.publicAddresses[i].address);
             if(!result) {
                 return this.wallet;
-            }
+            }      
             result.forEach(u => {
                 uxtos.push({
                     txid: u.txid,
@@ -125,15 +128,15 @@ export class BitcoinCashProvider {
                 });
                 balance += u.satoshis;
             });
-        });
+        }
 
-        this.wallet.publicAddresses.forEach(async address => {
-            let result = await this.BITBOX.Address.utxo(address.address);
+        for (let i = 0; i < this.wallet.changeAddresses.length; i++) {
+            let result = await this.BITBOX.Address.utxo(this.wallet.changeAddresses[i].address);
             if(!result) {
                 return this.wallet;
             }
             result.forEach(u => {
-                uxtos.push({
+                this.wallet.uxtos.push({
                     txid: u.txid,
                     vout: u.vout,
                     address: u.cashAddress,
@@ -142,16 +145,16 @@ export class BitcoinCashProvider {
                     confirmations: u.confirmations
                 });
                 balance += u.satoshis;
-            }); 
-        });
+            });
+        };
 
-        this.wallet.publicAddresses.forEach(async address => {
-            let result = await this.BITBOX.Address.unconfirmed(address.address);
+        for (let i = 0; i < this.wallet.changeAddresses.length; i++) {
+            let result = await this.BITBOX.Address.unconfirmed(this.wallet.changeAddresses[i].address);
             if(!result) {
                 return this.wallet;
             }
             result.forEach(u => {
-                uxtos.push({
+                this.wallet.uxtos.push({
                     txid: u.txid,
                     vout: u.vout,
                     address: u.cashAddress,
@@ -159,17 +162,62 @@ export class BitcoinCashProvider {
                     height: null,
                     confirmations: u.confirmations
                 });
+                console.log('change unconfirmed: ' + u.satoshis);
                 balance += u.satoshis;
-            });            
-        }); 
+            });        
+        }; 
 
-        this.wallet.balance = balance;
         this.wallet.uxtos = uxtos;
+        this.wallet.balance = balance;
         return this.wallet;
     }
 
     public getPublicAddress(): string {
         return this.wallet.publicAddresses[Math.floor(Math.random() * this.wallet.publicAddresses.length)].address;
+    }
+    public getBalance(): number {
+        switch(this.settingsProvider.settings.currencySymbol.toLowerCase()) {
+            case "sat":
+            return this.wallet.balance;
+
+            case "cash":
+            return this.wallet.balance / 100;
+
+            case "bits":
+            return this.wallet.balance / 100;
+
+            case "bch":
+            return this.wallet.balance / 100000000;
+
+            default:
+            return this.wallet.balance;
+        }
+    }
+    public async toBitcionCash(value: number, symbol: string): Promise<number> {
+        symbol = symbol.toLowerCase();
+        let satoshis = 0;
+
+        switch(symbol){
+            case "cash":
+            satoshis = Math.round(value * 100);
+            break;
+
+            case "bits":
+            satoshis = Math.round(value * 100);
+            break;
+
+            case "sat":
+            satoshis = Math.round(value);
+            break;
+
+            case "bch":
+            satoshis = Math.round(value * 100000000);
+            break;
+
+            default:
+            throw new Error("Invalid currency symbol");
+        }
+        return await this.BITBOX.BitcoinCash.toBitcoinCash(satoshis);
     }
 
     private listen() {

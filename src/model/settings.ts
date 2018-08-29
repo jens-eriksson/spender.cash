@@ -1,13 +1,15 @@
 export interface Settings {
     currencySymbol: string;
-    nativeCurrency: string;
-    hideBalance: boolean;
+    fiatCurrency: string;
+    headerPageIndex: number;
+    hideFiatAmounts: boolean
     isEncrypted: boolean;
 };
 
 export const DefaultSettings: Settings = {
     currencySymbol: 'cash',
-    nativeCurrency: 'USD',
-    hideBalance: false,
+    fiatCurrency: 'USD',
+    headerPageIndex: 0,
+    hideFiatAmounts: false,
     isEncrypted: false
 };
