@@ -11,20 +11,21 @@
 <ion-content>
   <ion-card>
     <ion-card-content>
-      <ion-item>
-        <ion-input placeholder="Recipient..." [(ngModel)]="address"></ion-input>
-        <button ion-button outline icon-only item-end>
-          <ion-icon name="qr-scanner"></ion-icon>
-        </button>
-      </ion-item>
+        <ion-item>
+            <ion-input placeholder="Recipient..." [(ngModel)]="address"></ion-input>
+            <button ion-button outline icon-only item-end (click)="scanQr()">
+              <ion-icon name="qr-scanner"></ion-icon>
+            </button>
+          </ion-item>      
       <ion-item>
         <ion-input placeholder="Amount..." (keypress)="checkAmountInput($event)" (ionChange)="updateFiatAmount()" [(ngModel)]="amount"></ion-input>
         <ion-note item-end color="primary">{{ settingsProvider.settings.currencySymbol }}</ion-note>
       </ion-item>
-      <ion-item>
+      <ion-item *ngIf="!settingsProvider.settings.hideFiatAmounts">
           <p ion-text color="light">{{ fiatAmount | currency: settingsProvider.settings.fiatCurrency }}</p>
           <ion-note item-end color="light">{{ settingsProvider.settings.fiatCurrency }}</ion-note>
       </ion-item>
+      
     </ion-card-content>
   </ion-card>
 </ion-content>

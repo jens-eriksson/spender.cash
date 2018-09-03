@@ -15,12 +15,11 @@ export class BitcoinCashProvider {
         private persistenceProvider: PersistenceProvider,
         private settingsProvider: SettingsProvider
     ) {
-        this.BITBOX.restURL = "http://localhost:8100/bitbox/v1/";
-        this.BITBOX.Address.restURL = "http://localhost:8100/bitbox/v1/";
-        //this.listen();
+        
     }
 
     public async initilizeWallet(): Promise<Wallet> {
+        console.log('initilizeWallet');
         let mnemonic = await this.persistenceProvider.get(this.STORAGEKEY);
         if (mnemonic) {
             this.wallet = {

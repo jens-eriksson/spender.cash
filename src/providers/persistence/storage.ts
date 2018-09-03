@@ -1,4 +1,4 @@
-import { SecureStorage, SecureStorageObject } from '@ionic-native/secure-storage';
+import { SecureStorage } from '@ionic-native/secure-storage';
 
 export interface IStorage {
     get(key: string): Promise<any>;
@@ -15,22 +15,26 @@ export class CordovaStorage implements IStorage {
         this.secureStorage = new SecureStorage();
     }
 
-    public get(key: string) : Promise<string> {  
-        return this.secureStorage.create(this.storageKey)
-            .then((storage: SecureStorageObject) => storage.get(key))
-            .then(value => value);
+    public async get(key: string) : Promise<string> {
+        let storage = await this.secureStorage.create(this.storageKey);
+        let keys = await storage.keys();
+
+        if(keys.indexOf(key) > -1){
+            return await storage.get(key);
+        }
+        else {
+            return null;
+        }            
     }
 
-    public set(key: string, value: string) : Promise<void> {
-        return this.secureStorage.create(this.storageKey)
-            .then((storage: SecureStorageObject) => storage.set(key, value))
-            .then(value => value);
+    public async set(key: string, value: string) {
+        let storage = await this.secureStorage.create(this.storageKey);
+        await storage.set(key, value);
     }
 
-    public remove(key: string) : Promise<string> {
-        return this.secureStorage.create(this.storageKey)
-            .then((storage: SecureStorageObject) => storage.remove(key))
-            .then(value => value);
+    public async remove(key: string) : Promise<string> {
+        let storage = await this.secureStorage.create(this.storageKey);
+        return await storage.remove(key);
     }
 
 }

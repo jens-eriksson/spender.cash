@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { ViewController } from 'ionic-angular';
 import { PriceProvider } from '../../providers/price/price';
 import { BitcoinCashProvider } from '../../providers/bitcoin-cash/bitcoin-cash';
+import { QRScanner, QRScannerStatus } from '@ionic-native/qr-scanner';
 
 @Component({
   selector: 'page-pay',
@@ -12,15 +13,18 @@ export class PayPage {
   address: string;
   amount: number;
   fiatAmount: number;
-
+ 
   constructor(
     public viewCtrl: ViewController,
     public settingsProvider: SettingsProvider,
     private priceProvider: PriceProvider,
-    private bitcoinCashProvider: BitcoinCashProvider) {
+    private bitcoinCashProvider: BitcoinCashProvider,
+    private qrScanner: QRScanner
+  ) {
   }
 
-  ionViewDidLoad() {
+  ionViewDidEnter() {
+    this.scanQr();
   }
 
   dismiss() {
@@ -34,6 +38,34 @@ export class PayPage {
           .then(exchangeRate => this.fiatAmount = bch * exchangeRate);
       });    
   }
+
+  scanQr() {
+    this.qrScanner.prepare()
+      .then((qrStatus: QRScannerStatus) => {
+        if(qrStatus.authorized) {
+          let scanSub = this.qrScanner.scan().subscribe(text => {
+            let bip21 = this.bitcoinCashProvider.decodeQrCode(text);
+            this.address = bip21.address;
+            if(bip21.options) {
+              this.amount = bip21.options.amount;
+            }
+            this.qrScanner.hide();
+            scanSub.unsubscribe();
+          });
+        }
+        else if(qrStatus.denied) {
+          console.log("qrStatus.denied");
+          // camera permission was permanently denied
+          // you must use QRScanner.openSettings() method to guide the user to the settings page
+          // then they can grant the permission from there
+        }
+        else {
+          console.log(qrStatus);
+        }
+      })
+      .catch((e: any) => console.log('Error is', e));
+  }
+
 
   checkAmountInput($event) {
     let newAmount: string;

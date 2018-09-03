@@ -1,14 +1,8 @@
 {
-  "name": "spender.cash",
-  "integrations": {
-    "cordova": {}
-  },
-  "pro_id": "6581df65",
-  "type": "ionic-angular",
-  "proxies": [
-    {
-      "path": "/bitbox",
-      "proxyUrl": "https://rest.bitcoin.com"
-    }
-  ]
-}
+    "name": "spender.cash",
+    "integrations": {
+      "cordova": {}
+    },
+    "pro_id": "6581df65",
+    "type": "ionic-angular"
+  }

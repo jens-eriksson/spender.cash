@@ -1,7 +1,7 @@
 import { BitcoinCashProvider } from '../../providers/bitcoin-cash/bitcoin-cash';
 import { PriceProvider } from '../../providers/price/price';
 import { SettingsProvider } from '../../providers/settings/settings';
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { ViewController } from 'ionic-angular';
 
 /**
@@ -16,6 +16,7 @@ import { ViewController } from 'ionic-angular';
   templateUrl: 'receive.html',
 })
 export class ReceivePage {
+  @ViewChild('amountInput') amountInput;
   amount: number;
   fiatAmount: number;
 
@@ -26,8 +27,15 @@ export class ReceivePage {
     private bitcoinCashProvider: BitcoinCashProvider) {
   }
 
+  ngAfterViewChecked() {
+    this.amountInput.setFocus()
+  }
+
   dismiss() {
-    this.viewCtrl.dismiss(this.amount);
+    this.viewCtrl.dismiss({
+        amount: this.amount,
+        fiatAmount: this.fiatAmount
+    });
   }
 
   updateFiatAmount() {

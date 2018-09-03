@@ -12,16 +12,15 @@
     <ion-card>
       <ion-card-content>
         <ion-item>
-          <ion-input placeholder="Amount..." (keypress)="checkAmountInput($event)" (ionChange)="updateFiatAmount()" [(ngModel)]="amount" type="number" ></ion-input>
+          <ion-input #amountInput placeholder="Amount..." (keypress)="checkAmountInput($event)" (ionChange)="updateFiatAmount()" [(ngModel)]="amount" type="number"></ion-input>
           <ion-note item-end color="primary">{{ settingsProvider.settings.currencySymbol }}</ion-note>
         </ion-item>
-        <ion-item>
+        <ion-item *ngIf="!settingsProvider.settings.hideFiatAmounts">
             <p ion-text color="light">{{ fiatAmount | currency: settingsProvider.settings.fiatCurrency }}</p>
             <ion-note item-end color="light">{{ settingsProvider.settings.fiatCurrency }}</ion-note>
         </ion-item>
       </ion-card-content>
-    </ion-card>
-   
+    </ion-card>   
   </ion-content>
 
   <ion-footer>

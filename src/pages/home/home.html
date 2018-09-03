@@ -1,17 +1,10 @@
-<ion-header *ngIf="bitcoinCashProvider.wallet" class="balance">
-    <ion-slides (ionSlideDidChange)="ionSlideDidChange()">
-        <ion-slide>   
-            <h1>
-                <b>{{ bitcoinCashProvider.getBalance() | currency: settingsProvider.settings.currencySymbol }}</b>
-            </h1>
-            <h6 *ngIf="!settingsProvider.settings.hideFiatAmounts">{{ fiatBalance | currency: settingsProvider.settings.fiatCurrency }}</h6>
-        </ion-slide>
-        <ion-slide>
-            <button ion-button large icon-only round color="white" outline>
-                <ion-icon name="camera"></ion-icon>
-            </button>
-        </ion-slide>
-    </ion-slides>
+<ion-header *ngIf="bitcoinCashProvider.wallet" class="balance" (click)="settingsProvider.settings.hideBalance = !settingsProvider.settings.hideBalance">
+    <div *ngIf="!settingsProvider.settings.hideBalance">
+        <h1>
+            <b>{{ bitcoinCashProvider.getBalance() | currency: settingsProvider.settings.currencySymbol }}</b>
+        </h1>
+        <h6 *ngIf="!settingsProvider.settings.hideFiatAmounts">{{ fiatBalance | currency: settingsProvider.settings.fiatCurrency }}</h6>
+    </div>
 </ion-header>
 
 <ion-content *ngIf="bitcoinCashProvider.wallet" padding>
@@ -34,7 +27,7 @@
                         <ion-item text-center>
                             <p ion-text color="primary">{{ this.receiveAmount | currency: settingsProvider.settings.currencySymbol }}</p>
                         </ion-item>
-                        <ion-item text-center>
+                        <ion-item text-center *ngIf="!settingsProvider.settings.hideFiatAmounts">
                             <p ion-text>{{ this.receiveFiatAmount | currency: settingsProvider.settings.fiatCurrency }}
                             </p>
                         </ion-item>

@@ -11,29 +11,18 @@ export class SettingsProvider {
         this.load();
     }
 
-    public load(): void {
-        this.persistence.get(this.STORAGEKEY)
-        .then(value =>  {
-            try{
-                if(value){
-                    return JSON.parse(value);
-                }
-                else{
-                    return DefaultSettings;
-                }
-                
-            }
-            catch(error){
-                console.log(error);
-                return DefaultSettings;
-            }
-            
-        })
-        .then((settings: Settings) => this.settings = settings);
+    public async load() {
+        let value = await this.persistence.get(this.STORAGEKEY);
+        if(value){
+            this.settings =  JSON.parse(value);
+        }
+        else{
+            this.settings = DefaultSettings;
+        }
     }
     
 
-    public save(): void {
-        this.persistence.set(this.STORAGEKEY, this.settings);
+    public async save() {
+        await this.persistence.set(this.STORAGEKEY, this.settings);
     }
 }

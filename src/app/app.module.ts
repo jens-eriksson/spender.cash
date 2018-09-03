@@ -7,6 +7,7 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { NgxQRCodeModule } from 'ngx-qrcode2';
+import { QRScanner } from '@ionic-native/qr-scanner';
 
 /* App */
 import { SpenderApp } from './app.component';
@@ -75,6 +76,7 @@ import { TruncatePipe } from '../pipes/truncate';
     OnBoardingProvider,
     BitcoinCashProvider,
     PriceProvider,
+    QRScanner,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

@@ -1,10 +1,9 @@
-import { ViewChild } from '@angular/core';
 import { ReceivePage } from '../receive/receive';
 import { PriceProvider } from '../../providers/price/price';
 import { BitcoinCashProvider } from '../../providers/bitcoin-cash/bitcoin-cash';
 import { SettingsProvider } from '../../providers/settings/settings';
 import { Component } from '@angular/core';
-import { NavController, ModalController, Slides } from 'ionic-angular';
+import { NavController, ModalController } from 'ionic-angular';
 import { PayPage } from '../pay/pay';
 import { TransactionsPage } from '../transactions/transactions';
 import { SettingsPage } from '../settings/settings';
@@ -14,8 +13,6 @@ import { SettingsPage } from '../settings/settings';
   templateUrl: 'home.html'
 })
 export class HomePage {
-
-  @ViewChild(Slides) slides: Slides
   fiatBalance: number;
   qrCode: string;
   receiveAmount: number;
@@ -30,23 +27,13 @@ export class HomePage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad');
-    this.bitcoinCashProvider.initilizeWallet();
+    this.calculateNativeBalance();
+    this.setQrCode(this.bitcoinCashProvider.getPublicAddress());
   }
 
   ionViewDidEnter(){
-    this.bitcoinCashProvider.updateBalance()
-    .then(() => {
-      this.calculateNativeBalance();
-    })
-    .catch(error => console.log(error));
-    this.setQrCode(this.bitcoinCashProvider.getPublicAddress());
-    this.slides.slideTo(this.settingsProvider.settings.headerPageIndex, 0);
-  }
-
-  ionSlideDidChange() {
-    this.settingsProvider.settings.headerPageIndex = this.slides.getActiveIndex();
-    this.settingsProvider.save();
+   this.bitcoinCashProvider.updateBalance()
+    .then(() => this.calculateNativeBalance());
   }
 
   public refresh(refresher) {
@@ -55,7 +42,10 @@ export class HomePage {
         this.calculateNativeBalance();
         refresher.complete()
       })
-      .catch(error => console.log(error));
+      .catch(error => {
+        console.log(error);
+        refresher.complete();
+      });
   }
 
   public calculateNativeBalance() {
@@ -83,8 +73,9 @@ export class HomePage {
     }
     else {
       let receiveModal = this.modalController.create(ReceivePage);
-      receiveModal.onDidDismiss(amount => {
-        this.receiveAmount = amount;
+      receiveModal.onDidDismiss(amounts => {
+        this.receiveAmount = amounts.amount;
+        this.receiveFiatAmount = amounts.fiatAmount;
         this.updateReceiveAmount();
       });
       receiveModal.present();
@@ -108,7 +99,6 @@ export class HomePage {
           };
           this.setQrCode(this.bitcoinCashProvider.getPublicAddress(), options);
         });
-      this.calculateNativeBalance();
     }
     else {
       this.setQrCode(this.bitcoinCashProvider.getPublicAddress());
@@ -120,6 +110,10 @@ export class HomePage {
     this.receiveAmount = null;
     this.receiveFiatAmount = null;
     this.setQrCode(this.bitcoinCashProvider.getPublicAddress());
+  }
+
+  public takeSelfie() {
+    console.log("selfie");
   }
 
   private setQrCode(address: string, options?: any) {

@@ -43,6 +43,8 @@
 		604130FC03E5474896082DB5 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80779B521B98416981F28F19 /* WebKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		9F097A199AB148AD9AE7F183 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 78FCEDCA2D074504A93F5D86 /* libz.tbd */; };
 		88B41646F14F4FE4941382E4 /* CDVIonicKeyboard.m in Sources */ = {isa = PBXBuildFile; fileRef = E0703B0AF0554934BB15EC0D /* CDVIonicKeyboard.m */; };
+		4299C0F925BE4112887937C6 /* CDVStatusBar.m in Sources */ = {isa = PBXBuildFile; fileRef = E1914E6508754EBDB7C895D2 /* CDVStatusBar.m */; };
+		53B7E0BC79664BE7AAEE11A2 /* QRScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78ADEA8F71124F2795CDC512 /* QRScanner.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -135,6 +137,9 @@
 		78FCEDCA2D074504A93F5D86 /* libz.tbd */ = {isa = PBXFileReference; name = "libz.tbd"; path = "usr/lib/libz.tbd"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = sourcecode.text-based-dylib-definition; explicitFileType = undefined; includeInIndex = 0; };
 		E0703B0AF0554934BB15EC0D /* CDVIonicKeyboard.m */ = {isa = PBXFileReference; name = "CDVIonicKeyboard.m"; path = "cordova-plugin-ionic-keyboard/CDVIonicKeyboard.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
 		C2BE321EFD1249F9827521FF /* CDVIonicKeyboard.h */ = {isa = PBXFileReference; name = "CDVIonicKeyboard.h"; path = "cordova-plugin-ionic-keyboard/CDVIonicKeyboard.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
+		E1914E6508754EBDB7C895D2 /* CDVStatusBar.m */ = {isa = PBXFileReference; name = "CDVStatusBar.m"; path = "cordova-plugin-statusbar/CDVStatusBar.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
+		A7FB3EDB1E384C1BB46F4B60 /* CDVStatusBar.h */ = {isa = PBXFileReference; name = "CDVStatusBar.h"; path = "cordova-plugin-statusbar/CDVStatusBar.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
+		78ADEA8F71124F2795CDC512 /* QRScanner.swift */ = {isa = PBXFileReference; name = "QRScanner.swift"; path = "cordova-plugin-qrscanner/QRScanner.swift"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.swift; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -293,6 +298,9 @@
 				D3B042F029B94587BD14D587 /* GCDWebServerStreamedResponse.h */,
 				E0703B0AF0554934BB15EC0D /* CDVIonicKeyboard.m */,
 				C2BE321EFD1249F9827521FF /* CDVIonicKeyboard.h */,
+				E1914E6508754EBDB7C895D2 /* CDVStatusBar.m */,
+				A7FB3EDB1E384C1BB46F4B60 /* CDVStatusBar.h */,
+				78ADEA8F71124F2795CDC512 /* QRScanner.swift */,
 			);
 			name = Plugins;
 			path = "spender.cash/Plugins";
@@ -429,6 +437,8 @@
 				9D7491D69F4243B1998CC08D /* GCDWebServerFileResponse.m in Sources */,
 				C526CA9D08B7409F8F3803AE /* GCDWebServerStreamedResponse.m in Sources */,
 				88B41646F14F4FE4941382E4 /* CDVIonicKeyboard.m in Sources */,
+				4299C0F925BE4112887937C6 /* CDVStatusBar.m in Sources */,
+				53B7E0BC79664BE7AAEE11A2 /* QRScanner.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -464,6 +474,10 @@
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				PRODUCT_NAME = "spender.cash";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/$(PROJECT_NAME)/Bridging-Header.h";
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				SWIFT_VERSION = 3.0;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -486,6 +500,9 @@
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				PRODUCT_NAME = "spender.cash";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/$(PROJECT_NAME)/Bridging-Header.h";
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -512,6 +529,10 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = NO;
+				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/$(PROJECT_NAME)/Bridging-Header.h";
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				SWIFT_VERSION = 3.0;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -537,6 +558,9 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = NO;
+				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/$(PROJECT_NAME)/Bridging-Header.h";
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};

@@ -1,7 +1,7 @@
 export interface Settings {
     currencySymbol: string;
     fiatCurrency: string;
-    headerPageIndex: number;
+    hideBalance: boolean;
     hideFiatAmounts: boolean
     isEncrypted: boolean;
 };
@@ -9,7 +9,7 @@ export interface Settings {
 export const DefaultSettings: Settings = {
     currencySymbol: 'cash',
     fiatCurrency: 'USD',
-    headerPageIndex: 0,
+    hideBalance: false,
     hideFiatAmounts: false,
     isEncrypted: false
 };

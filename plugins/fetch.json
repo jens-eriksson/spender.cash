@@ -2,7 +2,7 @@
   "cordova-plugin-secure-storage": {
     "source": {
       "type": "registry",
-      "id": "cordova-plugin-secure-storage"
+      "id": "cordova-plugin-secure-storage@^2.6.8"
     },
     "is_top_level": true,
     "variables": {}
@@ -45,6 +45,30 @@
       "id": "cordova-plugin-ionic-keyboard@^2.0.5"
     },
     "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-statusbar": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-statusbar@2.4.2"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-qrscanner": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-qrscanner"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-add-swift-support": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-add-swift-support"
+    },
+    "is_top_level": false,
     "variables": {}
   }
 }
