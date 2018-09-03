@@ -1,39 +1,54 @@
-<ion-content padding>
-    <ion-grid>
-        <ion-row style="height: 100%;">
-            <ion-col>
-                <ion-slides pager>
-                    <ion-slide>
-                        <ion-header>
-                            <h2 ion-text color="light">PAY</h2>
-                        </ion-header>
-                        <ion-img width="150" height="150" src="../../assets/imgs/pay3.png" (click)="gotoPay()"></ion-img>
-                        <div style="margin-top: 20px;">
-                            <h2 ion-text color="light">100 000 cash</h2>
-                            <h5 ion-text color="light">$70</h5>
-                        </div>
-                    </ion-slide>
-                    <ion-slide>
-                        <ion-header>
-                            <h2 ion-text color="light">RECEIVE</h2>
-                        </ion-header>
-                        <ion-img width="230" height="230" src="../../assets/imgs/qr.png"></ion-img>
-                    </ion-slide>
-                </ion-slides>
-            </ion-col>
-        </ion-row>
+<ion-header *ngIf="bitcoinCashProvider.wallet" class="balance" (click)="settingsProvider.settings.hideBalance = !settingsProvider.settings.hideBalance">
+    <div *ngIf="!settingsProvider.settings.hideBalance">
+        <h1>
+            <b>{{ bitcoinCashProvider.getBalance() | currency: settingsProvider.settings.currencySymbol }}</b>
+        </h1>
+        <h6 *ngIf="!settingsProvider.settings.hideFiatAmounts">{{ fiatBalance | currency: settingsProvider.settings.fiatCurrency }}</h6>
+    </div>
+</ion-header>
 
-        <ion-row>
-            <ion-col>
-                <button ion-button icon-only round (click)="gotoTransactions()">
-                    <ion-icon name="menu"></ion-icon>
-                </button>
-            </ion-col>
-            <ion-col col-auto>
-                <button ion-button icon-only round (click)="gotoSettings()">
-                    <ion-icon name="settings"></ion-icon>
-                </button>
-            </ion-col>
-        </ion-row>
-    </ion-grid>
+<ion-content *ngIf="bitcoinCashProvider.wallet" padding>
+    <ion-refresher (ionRefresh)="refresh($event)">
+        <ion-refresher-content pullingIcon="arrow-dropdown" refreshingSpinner="circles">
+        </ion-refresher-content>
+    </ion-refresher>
+    <ion-slides pager>
+        <ion-slide>
+            <div class="pay-button" (click)="navToPay()">
+                <ion-icon name="share-alt"></ion-icon>
+            </div>
+        </ion-slide>
+        <ion-slide>
+            <ion-card class="receive-card">
+                <ion-card-content>
+                    <ngx-qrcode qrc-element-type="url" [qrc-value]="qrCode" qrc-errorCorrectionLevel="L" (click)="navToReceive()">
+                    </ngx-qrcode>
+                    <div *ngIf="this.receiveAmount">
+                        <ion-item text-center>
+                            <p ion-text color="primary">{{ this.receiveAmount | currency: settingsProvider.settings.currencySymbol }}</p>
+                        </ion-item>
+                        <ion-item text-center *ngIf="!settingsProvider.settings.hideFiatAmounts">
+                            <p ion-text>{{ this.receiveFiatAmount | currency: settingsProvider.settings.fiatCurrency }}
+                            </p>
+                        </ion-item>
+                    </div>
+                </ion-card-content>
+            </ion-card>
+        </ion-slide>
+    </ion-slides>˛
+</ion-content>
+
+<ion-footer padding *ngIf="bitcoinCashProvider.wallet">
+    <button ion-button icon-only round float-start (click)="navToTransactions()">
+        <ion-icon name="menu"></ion-icon>
+    </button>
+    <button ion-button icon-only round float-end (click)="navToSettings()">
+        <ion-icon name="settings"></ion-icon>
+    </button>
+</ion-footer>
+
+<ion-content *ngIf="!bitcoinCashProvider.wallet" padding text-center>
+    <button ion-button round (click)="bitcoinCashProvider.createWallet()">
+        Create Wallet...
+    </button>
 </ion-content>

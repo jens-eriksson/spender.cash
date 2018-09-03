@@ -1,0 +1,30 @@
+<ion-header>
+    <ion-navbar>
+      <ion-buttons start>
+        <button ion-button icon-only large (click)="dismiss()">
+          <ion-icon name="close"></ion-icon>
+        </button>
+      </ion-buttons>
+      <ion-title>RECEIVE</ion-title>
+    </ion-navbar>
+  </ion-header>
+  <ion-content>
+    <ion-card>
+      <ion-card-content>
+        <ion-item>
+          <ion-input #amountInput placeholder="Amount..." (keypress)="checkAmountInput($event)" (ionChange)="updateFiatAmount()" [(ngModel)]="amount" type="number"></ion-input>
+          <ion-note item-end color="primary">{{ settingsProvider.settings.currencySymbol }}</ion-note>
+        </ion-item>
+        <ion-item *ngIf="!settingsProvider.settings.hideFiatAmounts">
+            <p ion-text color="light">{{ fiatAmount | currency: settingsProvider.settings.fiatCurrency }}</p>
+            <ion-note item-end color="light">{{ settingsProvider.settings.fiatCurrency }}</ion-note>
+        </ion-item>
+      </ion-card-content>
+    </ion-card>   
+  </ion-content>
+
+  <ion-footer>
+      <button ion-button large full icon-only no-margin (click)="dismiss()" [disabled]="!amount">
+          <ion-icon name="checkmark"></ion-icon>
+      </button>
+  </ion-footer>

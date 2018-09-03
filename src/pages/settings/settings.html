@@ -1,9 +1,3 @@
-<!--
-  Generated template for the SettingsPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
 
   <ion-navbar>
@@ -12,7 +6,37 @@
 
 </ion-header>
 
+<ion-content>
 
-<ion-content padding>
+  <ion-list>
+    <ion-list-header>
+      Wallet
+    </ion-list-header>
+    <button ion-item (click)="navToCurrencySymbol()">
+      <ion-label>Currency Symbol</ion-label>
+      <ion-note item-end>{{ settingsProvider.settings.currencySymbol }}</ion-note>
+    </button>
+    <button ion-item (click)="navToFiatCurrency()">
+      <ion-label>Fiat Currency</ion-label>
+      <ion-note item-end>{{ settingsProvider.settings.fiatCurrency }}</ion-note>
+    </button>
+     <ion-item>
+        <ion-label>Hide Fiat Amounts</ion-label>
+        <ion-toggle [(ngModel)]="settingsProvider.settings.hideFiatAmounts"></ion-toggle>
+      </ion-item>
+      <ion-item>
+          <ion-label>Hide Balance</ion-label>
+          <ion-toggle [(ngModel)]="settingsProvider.settings.hideBalance"></ion-toggle>
+        </ion-item>
+    <ion-list-header>
+      Backup
+    </ion-list-header>
+    <button ion-item>
+      <ion-label>Backuup Phrase</ion-label>
+    </button>
+    <button ion-item>
+      <ion-label>Restore </ion-label>
+    </button>
+  </ion-list>
 
 </ion-content>

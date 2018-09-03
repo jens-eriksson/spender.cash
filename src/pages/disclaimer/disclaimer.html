@@ -1,0 +1,27 @@
+<ion-content padding class="disclaimer">
+  <div class="disclaimer-content">
+    <h1>Disclaimer</h1>
+    <h5>Bitcoin Cash is different...</h5>
+    <br>
+    <ion-list class="checkbox-list" no-lines text-wrap>
+      <ion-item>
+        <ion-label>I understand that my funds are held securely on this device, not by a company.</ion-label>
+        <ion-checkbox [(ngModel)]="accepted.first"></ion-checkbox>
+      </ion-item>
+      <ion-item>
+        <ion-label>I understand that if this app is moved to another device or deleted, my funds can only be recovered with the backup
+          phrase.
+        </ion-label>
+        <ion-checkbox [(ngModel)]="accepted.second"></ion-checkbox>
+      </ion-item>
+      <ion-item>
+        <ion-label>I understand that this software is provided "as is", without warrenty of any kind.</ion-label>
+        <ion-checkbox [(ngModel)]="accepted.third"></ion-checkbox>
+      </ion-item>
+    </ion-list>
+    
+  </div>
+</ion-content>
+<ion-footer>
+    <button ion-button full no-margin [disabled]="!accepted.first || !accepted.second || !accepted.third" (click)="confirm()" translate>Confirm and Get Started</button>
+</ion-footer>

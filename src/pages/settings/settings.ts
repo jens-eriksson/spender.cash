@@ -1,12 +1,8 @@
+import { FiatCurrenyPage } from './fiat-curreny/fiat-curreny';
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the SettingsPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { CurrencySymbolPage } from './currency-symbol/currency-symbol';
+import { SettingsProvider } from '../../providers/settings/settings';
 
 @Component({
   selector: 'page-settings',
@@ -14,11 +10,21 @@ import { NavController, NavParams } from 'ionic-angular';
 })
 export class SettingsPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, 
+              public navParams: NavParams,
+              public settingsProvider: SettingsProvider
+              ) {
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad SettingsPage');
+  ionViewDidLeave() {
+    this.settingsProvider.save();
   }
 
+  navToCurrencySymbol(){
+    this.navCtrl.push(CurrencySymbolPage);
+  }
+
+  navToFiatCurrency(){
+    this.navCtrl.push(FiatCurrenyPage);
+  }
 }
