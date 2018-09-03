@@ -1,8 +1,10 @@
 {
     "name": "spender.cash",
-    "integrations": {
-      "cordova": {}
-    },
     "pro_id": "6581df65",
-    "type": "ionic-angular"
+    "type": "ionic-angular",
+    "integrations": {
+      "cordova": {
+        
+      }
+    }    
   }
